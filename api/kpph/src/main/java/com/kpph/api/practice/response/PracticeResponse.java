@@ -1,5 +1,6 @@
 package com.kpph.api.practice.response;
 
+import com.kpph.api.practice.entity.Practice;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,6 +16,15 @@ public class PracticeResponse {
     private final Date practiceInsertDate;
     private final Date practiceUpdateDate;
 
+    public PracticeResponse(Practice practice) {
+        this.practiceIdx = practice.getPracticeIdx();
+        this.practiceIntegerData = practice.getPracticeIntegerData();
+        this.practiceTextData = practice.getPracticeTextData();
+        this.practiceLongTextData = practice.getPracticeLongTextData();
+        this.practiceInsertDate = practice.getPracticeInsertDate();
+        this.practiceUpdateDate = practice.getPracticeUpdateDate();
+    }
+
     @Builder
     public PracticeResponse(Integer practiceIdx, Integer practiceIntegerData, String practiceTextData, String practiceLongTextData, Date practiceInsertDate, Date practiceUpdateDate) {
         this.practiceIdx = practiceIdx;
@@ -24,4 +34,6 @@ public class PracticeResponse {
         this.practiceInsertDate = practiceInsertDate;
         this.practiceUpdateDate = practiceUpdateDate;
     }
+
+
 }

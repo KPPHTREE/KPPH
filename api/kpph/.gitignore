@@ -38,6 +38,8 @@ out/
 
 ### 프로젝트 개별설정 ###
 /src/main/resources/application.yml
+/src/main/resources/application.yml_230730
+/build.gradle_230730
 /src/main/resources/log4j2.xml
 /src/main/resources/log4jdbc.log4j2.properties
 /logs/
