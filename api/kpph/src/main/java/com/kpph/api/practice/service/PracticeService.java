@@ -5,6 +5,7 @@ import com.kpph.api.practice.entity.PracticeEditor;
 import com.kpph.api.practice.repository.PracticeRepository;
 import com.kpph.api.practice.request.PracticeCreate;
 import com.kpph.api.practice.request.PracticeRequest;
+import com.kpph.api.practice.response.PracticeResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,8 +28,6 @@ public class PracticeService {
         practiceRepository.save(practice);
     }
 
-
-
     public PracticeResponse selectOne(Integer practiceIdx) {
         Practice practice = practiceRepository.findById(practiceIdx).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
 
@@ -41,12 +40,10 @@ public class PracticeService {
                 .practiceLongTextData(practice.getPracticeLongTextData())
                 .build();
     }
-    
 
    public List<PracticeResponse> selectList() {
         return practiceRepository.findAll().stream().map(PracticeResponse :: new).collect(Collectors.toList());
     }
-
 
     @Transactional
     public void update(Integer practiceIdx, PracticeRequest practiceRequest) {
@@ -61,7 +58,6 @@ public class PracticeService {
 
         practice.edit(practiceEditor);
     }
-
 
     @Transactional //230806 pjh 해당 메소드에서 일어나는 로직이 모두 정상적으로 수행이 되어야만 최종적으로 DB에 commit
     public void delete(Integer practiceIdx) {

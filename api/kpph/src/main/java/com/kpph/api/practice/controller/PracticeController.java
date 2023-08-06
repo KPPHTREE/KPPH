@@ -21,7 +21,6 @@ public class PracticeController {
 
     @GetMapping("/helloWorld")
     public String test () {
-
         log.info("/api/helloWorld 호출");
 
         return "hello, World!";
@@ -37,7 +36,6 @@ public class PracticeController {
       
         return practiceService.selectOne(1);
     }
-
 
     @GetMapping("/selectList")
     public List<PracticeResponse> selectList() {
@@ -59,12 +57,11 @@ public class PracticeController {
     @GetMapping("/delete/{practiceIdx}")
     public void delete(@PathVariable("practiceIdx") Integer practiceIdx) {
         practiceService.delete(practiceIdx);
+    }
 
     @GetMapping("/delete")
     public void deleteAll() {
-        practiceService.delete();
-
+        practiceService.deleteAll();
     }
 
-
-}
+} // end of PracticeController
