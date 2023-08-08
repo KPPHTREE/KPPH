@@ -11,13 +11,15 @@ import lombok.ToString;
 public class PracticeCreate {
 
     private Integer practiceIntegerData;
-    private String practiceTextData;
     private String practiceLongTextData;
+    private String practiceTextData;
+
 
     @Builder
-    public PracticeCreate(Integer practiceIntegerData, String practiceTextData, String practiceLongTextData) {
+    public PracticeCreate(Integer practiceIntegerData, String practiceLongTextData, String practiceTextData) {
         this.practiceIntegerData = practiceIntegerData;
-        this.practiceTextData = practiceTextData;
         this.practiceLongTextData = practiceLongTextData;
+        this.practiceTextData = practiceTextData;
+
     }
 }

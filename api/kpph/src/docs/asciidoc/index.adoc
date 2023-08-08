@@ -1,0 +1,18 @@
+= KPPH API
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+
+== 연습용 글 저장
+
+=== 요청
+
+include::{snippets}/practice-create/http-request.adoc[]
+
+include::{snippets}/practice-create/request-fields.adoc[]
+
+=== 응답
+
+include::{snippets}/practice-create/http-response.adoc[]
