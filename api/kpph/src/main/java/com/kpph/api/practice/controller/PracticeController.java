@@ -19,13 +19,6 @@ public class PracticeController {
 
     private final PracticeService practiceService;
 
-    @GetMapping("/helloWorld")
-    public String test () {
-        log.info("/api/helloWorld 호출");
-
-        return "hello, World!";
-    }
-
     @PostMapping("/practice")
     public void insert(@RequestBody PracticeCreate practiceCreate) {
         practiceService.insert(practiceCreate);

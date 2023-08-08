@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.13'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id "org.asciidoctor.jvm.convert" version "3.3.2"
 }
 
 group = 'com.kpph'
@@ -20,10 +21,17 @@ configurations {
 	all {
 		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
 	}
+
+	asciidoctorExt
 }
 
 repositories {
 	mavenCentral()
+}
+
+ext {
+	asciidocVersion = "2.0.7.RELEASE"
+	snippetsDir = file('build/generated-snippets')
 }
 
 dependencies {
@@ -32,6 +40,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+	asciidoctorExt "org.springframework.restdocs:spring-restdocs-asciidoctor:${asciidocVersion}"
+	testImplementation "org.springframework.restdocs:spring-restdocs-mockmvc:${asciidocVersion}"
 
 	//implementation 'mysql:mysql-connector-java'
 	runtimeOnly 'mysql:mysql-connector-java:8.0.33'
@@ -44,4 +55,20 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	outputs.dir snippetsDir
+}
+
+asciidoctor {
+	inputs.dir snippetsDir
+	configurations 'asciidoctorExt'
+	dependsOn test
+}
+
+bootJar {
+	dependsOn asciidoctor
+
+	copy {
+		from asciidoctor.outputDir
+		into "src/main/resources/static/docs"
+	}
 }
